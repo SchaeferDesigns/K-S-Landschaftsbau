@@ -1902,41 +1902,14 @@ ol {
    in die helle Flaeche darunter entsteht dadurch von selbst.
    ------------------------------------------------------------------------- */
 .hero--hell .hero__veil {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(252, 251, 248, 0.3) 0%,
-      rgba(252, 251, 248, 0.04) 24%,
-      rgba(252, 251, 248, 0) 62%,
-      rgba(252, 251, 248, 0.04) 96%,
-      rgba(252, 251, 248, 0.1) 100%
-    ),
-    linear-gradient(
-      96deg,
-      rgba(252, 251, 248, 0.74) 0%,
-      rgba(252, 251, 248, 0.52) 30%,
-      rgba(252, 251, 248, 0.14) 55%,
-      rgba(252, 251, 248, 0) 70%
-    );
-}
-
-/* Auf schmalen Geraeten nimmt die Karte die volle Breite ein.
-   Der seitliche Schleier greift dort nicht, deshalb hellt er flaechig auf. */
-@media (max-width: 939px) {
-  .hero--hell .hero__veil {
-    background: linear-gradient(
-      180deg,
-      rgba(252, 251, 248, 0.48) 0%,
-      rgba(252, 251, 248, 0.3) 26%,
-      rgba(252, 251, 248, 0.4) 62%,
-      rgba(252, 251, 248, 0.42) 100%
-    );
-  }
+  /* Kein Schleier ueber dem Bild. Der Kontrast kommt allein aus der
+     Karte, sonst wirkt die ganze Flaeche milchig. */
+  background: none;
 }
 
 .hero--hell .hero__card {
-  background-color: rgba(255, 255, 255, 0.42);
-  border-color: rgba(255, 255, 255, 0.72);
+  background-color: rgba(255, 255, 255, 0.62);
+  border-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 8px 24px rgba(8, 32, 21, 0.08), 0 30px 70px rgba(8, 32, 21, 0.1);
 }
 
