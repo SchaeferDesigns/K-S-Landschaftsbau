@@ -1889,41 +1889,8 @@ ol {
   z-index: 1;
 }
 
-/* Weicher Ausklang zum nächsten Abschnitt.
-   Eine harte Kante zwischen dunklem Bild und heller Fläche wirkt
-   abgeschnitten, deshalb blendet der Kopfbereich unten in den
-   Sandstein des folgenden Abschnitts aus. */
-.hero::after,
-.page-hero::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(252, 251, 248, 0) 0%,
-    rgba(252, 251, 248, 0.22) 38%,
-    rgba(252, 251, 248, 0.62) 70%,
-    var(--stone-50) 100%
-  );
-}
-
-.hero::after {
-  height: clamp(110px, 17vh, 200px);
-}
-
-/* Beim hellen Bild geht der Uebergang fast von selbst.
-   Der Ausklang bleibt deshalb sehr kurz. */
-.hero--hell::after {
-  height: clamp(24px, 3vh, 44px);
-}
-
-.page-hero::after {
-  height: clamp(70px, 9vh, 110px);
-}
+/* Kein weicher Ausklang unter den Kopfbereichen.
+   Start- und Unterseiten enden mit einer klaren Kante. */
 
 
 /* -------------------------------------------------------------------------
@@ -1941,9 +1908,8 @@ ol {
       rgba(252, 251, 248, 0.3) 0%,
       rgba(252, 251, 248, 0.04) 24%,
       rgba(252, 251, 248, 0) 62%,
-      rgba(252, 251, 248, 0.06) 92%,
-      rgba(252, 251, 248, 0.32) 98%,
-      var(--stone-50) 100%
+      rgba(252, 251, 248, 0.04) 96%,
+      rgba(252, 251, 248, 0.1) 100%
     ),
     linear-gradient(
       96deg,
@@ -1963,23 +1929,9 @@ ol {
       rgba(252, 251, 248, 0.48) 0%,
       rgba(252, 251, 248, 0.3) 26%,
       rgba(252, 251, 248, 0.4) 62%,
-      rgba(252, 251, 248, 0.44) 94%,
-      rgba(252, 251, 248, 0.6) 99%,
-      var(--stone-50) 100%
+      rgba(252, 251, 248, 0.42) 100%
     );
   }
-}
-
-/* Schmaler Streifen unter der Kopfleiste. Dort stehen im Bild dunkle
-   Baeume, auf denen dunkle Schrift sonst nicht lesbar waere. */
-.hero--hell .hero__veil::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 140px;
-  background: linear-gradient(180deg, rgba(252, 251, 248, 0.78), rgba(252, 251, 248, 0));
 }
 
 .hero--hell .hero__card {
@@ -2042,9 +1994,22 @@ ol {
   background: rgba(18, 28, 23, 0.66);
 }
 
-/* Kopfleiste ueber einem hellen Bild: dunkle Schrift statt weisser */
+/* Kopfleiste ueber einem hellen Bild.
+   Das Bild liegt dort bei mittlerer Helligkeit, auf der weder helle noch
+   dunkle Schrift den geforderten Kontrast erreicht. Deshalb bekommt die
+   Leiste eine eigene Glasflaeche mit klarer Unterkante, statt das Bild
+   mit einem weichen Verlauf aufzuhellen. */
 .site-header[data-over='hell']:not([data-solid='true']) {
   color: var(--ink-900);
+  background-color: rgba(252, 251, 248, 0.58);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+  border-bottom-color: rgba(18, 28, 23, 0.08);
+}
+
+/* Volle Deckkraft, sonst mischt sich das Bild in die Schrift */
+.site-header[data-over='hell']:not([data-solid='true']) .site-header__link {
+  opacity: 1;
 }
 
 .site-header[data-over='hell']:not([data-solid='true']) .site-header__leaf {
