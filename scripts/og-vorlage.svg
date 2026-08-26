@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e2e20"/>
+      <stop offset="55%" stop-color="#12452f"/>
+      <stop offset="100%" stop-color="#051009"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#45a870"/>
+      <stop offset="100%" stop-color="#12452f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#45a870" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#45a870" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1040" cy="120" r="330" fill="url(#glow)"/>
+
+  <!-- Landschaftssilhouette unten -->
+  <path d="M0 478 C 180 438, 330 488, 500 466 C 680 442, 830 494, 1000 470 C 1090 458, 1150 474, 1200 466 L1200 630 L0 630 Z" fill="#0a2117"/>
+  <path d="M0 548 C 220 518, 420 562, 640 546 C 860 530, 1020 568, 1200 548 L1200 630 L0 630 Z" fill="#061710"/>
+  <path d="M0 596 C 260 578, 520 606, 800 592 C 1000 582, 1100 600, 1200 592 L1200 630 L0 630 Z" fill="#04100a"/>
+
+  <g>
+    <rect x="975" y="352" width="14" height="168" rx="7" fill="#05140d"/>
+    <ellipse cx="982" cy="336" rx="104" ry="76" fill="#123a27"/>
+    <ellipse cx="932" cy="360" rx="66" ry="46" fill="#17492f" opacity="0.95"/>
+    <ellipse cx="1040" cy="362" rx="60" ry="42" fill="#0f3122" opacity="0.95"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="1128" y="404" width="10" height="118" rx="5" fill="#05140d"/>
+    <ellipse cx="1133" cy="392" rx="62" ry="44" fill="#14432d"/>
+  </g>
+
+  <!-- Markenzeichen -->
+  <g transform="translate(90 86)">
+    <rect width="96" height="96" rx="26" fill="url(#mark)"/>
+    <path d="M31 9c0 10.2-6.9 17.3-16 18.3V32a2.2 2.2 0 1 1-4.4 0v-4.7C10.6 17.2 17.5 10.1 26.6 9.1c1.6-.2 3.1-.5 4.4-1.1Z" transform="translate(28 26) scale(1.15)" fill="#ffffff"/>
+  </g>
+
+  <text x="210" y="128" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#ffffff" letter-spacing="-1">K &amp; S Landschaftsbau</text>
+  <text x="210" y="168" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="22" font-weight="400" fill="#7cc79a" letter-spacing="3">GARTEN- UND LANDSCHAFTSBAU</text>
+
+  <text x="90" y="300" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="60" font-weight="700" fill="#ffffff" letter-spacing="-2">Planung, Bau und Pflege</text>
+  <text x="90" y="366" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="60" font-weight="700" fill="#ffffff" letter-spacing="-2">aus einer Hand</text>
+
+  <g transform="translate(90 430)">
+    <rect width="330" height="52" rx="26" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.25"/>
+    <text x="30" y="34" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="22" fill="#ffffff">73557 Mutlangen, Ostalbkreis</text>
+  </g>
+</svg>
