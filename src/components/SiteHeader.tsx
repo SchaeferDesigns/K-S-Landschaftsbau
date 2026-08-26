@@ -89,7 +89,13 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="site-header" data-solid={solid && !open ? 'true' : 'false'}>
+      <header
+        className="site-header"
+        data-solid={solid && !open ? 'true' : 'false'}
+        /* Auf der Startseite liegt die Leiste ueber einem hellen Bild,
+           auf den Unterseiten ueber einem dunklen Kopf. */
+        data-over={pathname === '/' ? 'hell' : 'dunkel'}
+      >
         <div className="site-header__inner">
           <Link href="/" className="site-header__brand" aria-label={`${company.name}, zur Startseite`}>
             <span className="site-header__wordmark">

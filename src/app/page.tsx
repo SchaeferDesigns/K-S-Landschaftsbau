@@ -40,7 +40,7 @@ export default function HomePage() {
   return (
     <>
       {/* Startbereich mit gestaffelten Ebenen */}
-      <section className="hero">
+      <section className="hero hero--hell">
         <HeroMedia />
         <div className="hero__veil" />
 

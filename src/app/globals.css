@@ -1919,6 +1919,134 @@ ol {
   height: clamp(70px, 9vh, 110px);
 }
 
+
+/* -------------------------------------------------------------------------
+   11b. Heller Startbereich
+
+   Das Bild im Startbereich ist hell aufgenommen. Weisse Schrift traegt
+   darauf nicht, deshalb dreht diese Variante die Werte um: heller
+   Schleier statt dunklem, dunkle Schrift statt weisser. Der Uebergang
+   in die helle Flaeche darunter entsteht dadurch von selbst.
+   ------------------------------------------------------------------------- */
+.hero--hell .hero__veil {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(252, 251, 248, 0.34) 0%,
+      rgba(252, 251, 248, 0.06) 24%,
+      rgba(252, 251, 248, 0) 52%,
+      rgba(252, 251, 248, 0.5) 86%,
+      var(--stone-50) 100%
+    ),
+    linear-gradient(
+      96deg,
+      rgba(252, 251, 248, 0.74) 0%,
+      rgba(252, 251, 248, 0.52) 30%,
+      rgba(252, 251, 248, 0.14) 55%,
+      rgba(252, 251, 248, 0) 70%
+    );
+}
+
+/* Auf schmalen Geraeten nimmt die Karte die volle Breite ein.
+   Der seitliche Schleier greift dort nicht, deshalb hellt er flaechig auf. */
+@media (max-width: 939px) {
+  .hero--hell .hero__veil {
+    background: linear-gradient(
+      180deg,
+      rgba(252, 251, 248, 0.5) 0%,
+      rgba(252, 251, 248, 0.3) 26%,
+      rgba(252, 251, 248, 0.44) 60%,
+      rgba(252, 251, 248, 0.72) 88%,
+      var(--stone-50) 100%
+    );
+  }
+}
+
+/* Schmaler Streifen unter der Kopfleiste. Dort stehen im Bild dunkle
+   Baeume, auf denen dunkle Schrift sonst nicht lesbar waere. */
+.hero--hell .hero__veil::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(252, 251, 248, 0.78), rgba(252, 251, 248, 0));
+}
+
+.hero--hell .hero__card {
+  background-color: rgba(255, 255, 255, 0.42);
+  border-color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 24px rgba(8, 32, 21, 0.08), 0 30px 70px rgba(8, 32, 21, 0.1);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(2px)) or (backdrop-filter: blur(2px))) {
+  .hero--hell .hero__card {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.hero--hell .hero__card h1 {
+  color: var(--ink-900);
+}
+
+.hero--hell .hero__sub {
+  color: var(--ink-700);
+}
+
+.hero--hell .hero__badge {
+  background-color: rgba(255, 255, 255, 0.58);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: var(--forest-800);
+}
+
+.hero--hell .hero__points {
+  border-top-color: rgba(18, 28, 23, 0.14);
+}
+
+.hero--hell .hero__point {
+  color: var(--ink-700);
+}
+
+.hero--hell .hero__point svg {
+  color: var(--forest-600);
+}
+
+.hero--hell .btn--glass {
+  --btn-fg: var(--forest-800);
+  background-color: rgba(255, 255, 255, 0.52);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.hero--hell .btn--glass:hover {
+  background-color: rgba(255, 255, 255, 0.74);
+}
+
+.hero--hell .hero__scroll {
+  color: var(--ink-600);
+}
+
+.hero--hell .hero__scroll-line {
+  background: linear-gradient(180deg, rgba(18, 28, 23, 0.34), transparent);
+}
+
+.hero--hell .hero__scroll-line::after {
+  background: rgba(18, 28, 23, 0.66);
+}
+
+/* Kopfleiste ueber einem hellen Bild: dunkle Schrift statt weisser */
+.site-header[data-over='hell']:not([data-solid='true']) {
+  color: var(--ink-900);
+}
+
+.site-header[data-over='hell']:not([data-solid='true']) .site-header__leaf {
+  color: var(--forest-600);
+}
+
+.site-header[data-over='hell']:not([data-solid='true']) .site-header__link[aria-current='page']::before {
+  background-color: var(--forest-600);
+}
+
 /* -------------------------------------------------------------------------
    12. Kennzahlen
    ------------------------------------------------------------------------- */
