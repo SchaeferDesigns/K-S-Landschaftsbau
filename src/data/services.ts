@@ -20,7 +20,7 @@ export type Service = {
  * Fachlich ueblich fuer den Garten- und Landschaftsbau, aber noch nicht mit
  * K & S Landschaftsbau abgestimmt. Bitte pruefen, kuerzen oder ergaenzen.
  */
-export const services: Service[] = [
+const serviceList: Service[] = [
   {
     slug: 'gartenplanung',
     title: 'Gartenplanung und Gartengestaltung',
@@ -664,6 +664,45 @@ export const services: Service[] = [
       'Winterdienst mit festen Einsatzzeiten und dokumentierten Räum- und Streueinsätzen für Privat, Gewerbe und Wohnanlagen. K & S Landschaftsbau, Mutlangen.',
   },
 ];
+
+/**
+ * Reihenfolge im Leistungsverzeichnis, gruppiert nach Anlass.
+ * Sie bestimmt die Nummerierung auf der ganzen Seite, damit die
+ * Nummern von oben nach unten durchlaufen und ueberall gleich sind.
+ *
+ * Die Gruppen auf /leistungen folgen genau dieser Reihenfolge.
+ */
+export const serviceOrder = [
+  // Planen und gestalten
+  'gartenplanung',
+  'terrassenbau',
+  'teich-und-wasser',
+  'rasen-und-rollrasen',
+  // Bauen und befestigen
+  'pflaster-und-wegebau',
+  'mauern-und-natursteinarbeiten',
+  'zaun-und-sichtschutz',
+  'erdarbeiten',
+  // Pflegen und erhalten
+  'gartenpflege',
+  'baum-und-heckenpflege',
+  'bewaesserung',
+  'gruenflaechenpflege',
+  'winterdienst',
+];
+
+/** Nicht gelistete Leistungen landen hinten, damit nie eine verschwindet. */
+const position = (slug: string) => {
+  const index = serviceOrder.indexOf(slug);
+  return index === -1 ? serviceOrder.length : index;
+};
+
+export const services: Service[] = [...serviceList].sort(
+  (a, b) => position(a.slug) - position(b.slug),
+);
+
+/** Einstellige Position im Verzeichnis, 1-basiert */
+export const serviceNumber = (slug: string) => services.findIndex((s) => s.slug === slug) + 1;
 
 export const featuredServices = services.filter((s) => s.featured);
 

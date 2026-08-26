@@ -47,6 +47,18 @@ const gruppen = [
 ];
 
 export default function LeistungenPage() {
+  /* Die Nummern laufen von oben nach unten durch, ueber die Gruppen hinweg.
+     Deshalb vorab den Startwert je Gruppe bestimmen. */
+  let laufend = 0;
+  const gruppenMitStart = gruppen.map((gruppe) => {
+    const eintraege = gruppe.slugs
+      .map((slug) => services.find((service) => service.slug === slug))
+      .filter((service): service is (typeof services)[number] => Boolean(service));
+    const start = laufend;
+    laufend += eintraege.length;
+    return { ...gruppe, eintraege, start };
+  });
+
   return (
     <>
       <PageHero
@@ -67,11 +79,7 @@ export default function LeistungenPage() {
         </ul>
       </PageHero>
 
-      {gruppen.map((gruppe, gruppeIndex) => {
-        const eintraege = gruppe.slugs
-          .map((slug) => services.find((service) => service.slug === slug))
-          .filter((service): service is (typeof services)[number] => Boolean(service));
-
+      {gruppenMitStart.map((gruppe, gruppeIndex) => {
         return (
           <section
             key={gruppe.key}
@@ -89,9 +97,9 @@ export default function LeistungenPage() {
               </Reveal>
 
               <div className="service-list">
-                {eintraege.map((service, index) => (
+                {gruppe.eintraege.map((service, index) => (
                   <Reveal key={service.slug} delay={index * 70}>
-                    <ServiceRow service={service} index={services.indexOf(service)} />
+                    <ServiceRow service={service} index={gruppe.start + index} />
                   </Reveal>
                 ))}
               </div>

@@ -45,7 +45,6 @@ export default async function ServicePage({ params }: PageProps) {
   const service = getService(slug);
   if (!service) notFound();
 
-  const index = services.findIndex((item) => item.slug === service.slug);
   const related = services.filter((item) => item.slug !== service.slug).slice(0, 3);
 
   const crumbs = [
@@ -57,7 +56,7 @@ export default async function ServicePage({ params }: PageProps) {
   return (
     <>
       <PageHero
-        eyebrow={`Leistung ${String(index + 1).padStart(2, '0')}`}
+        eyebrow="Leistung"
         title={service.title}
         lead={service.teaser}
         crumbs={crumbs}
@@ -160,7 +159,7 @@ export default async function ServicePage({ params }: PageProps) {
           <div className="grid grid--3">
             {related.map((item, relatedIndex) => (
               <Reveal key={item.slug} delay={relatedIndex * 90}>
-                <ServiceCard service={item} index={services.indexOf(item)} />
+                <ServiceCard service={item} index={relatedIndex} />
               </Reveal>
             ))}
           </div>
