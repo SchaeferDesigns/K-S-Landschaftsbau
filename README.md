@@ -170,7 +170,39 @@ sind eine Einwilligungslösung und eine Ergänzung der Datenschutzerklärung nö
 - Alle Bewegungen respektieren `prefers-reduced-motion`
 - Trefferflächen mindestens 44 Pixel hoch
 
-## Veröffentlichen
+## Veröffentlichen über GitHub Pages
+
+Bei jedem Push auf `main` baut `.github/workflows/deploy.yml` die Seite statisch
+und veröffentlicht sie. Einmalig muss in den Repository-Einstellungen unter
+**Settings, Pages** als Quelle **GitHub Actions** eingestellt werden.
+
+Adresse danach: https://schaeferdesigns.github.io/K-S-Landschaftsbau/
+
+Was der Export anders macht:
+
+| Punkt | Grund |
+| --- | --- |
+| `output: 'export'`, kein Server | GitHub Pages liefert nur Dateien aus |
+| `basePath` auf den Repository-Namen | die Seite liegt in einem Unterordner, nicht auf der Wurzel |
+| `trailingSlash` | ohne den Schrägstrich laufen Unterseiten in einen 404 |
+| Bilder ohne Optimierer | der Optimierer braucht einen Server |
+| Sicherheits-Header entfallen | Header setzt ein Server, hier müssen sie beim Hoster hinterlegt werden |
+
+Alle Pfade zu Dateien aus `/public` laufen über `asset()` aus
+`src/config/site.ts`, alle öffentlichen Adressen über `siteBase`. Next setzt
+den Unterpfad bei Dateien aus `/public` nicht selbst davor, deshalb diese
+beiden Funktionen.
+
+Lokal prüfen lässt sich der Export so:
+
+```bash
+GITHUB_PAGES=true NEXT_PUBLIC_BASE_PATH=/K-S-Landschaftsbau npm run build
+```
+
+Unter Git Bash zusätzlich `MSYS_NO_PATHCONV=1` voranstellen, sonst wandelt die
+Shell den Unterpfad in einen Windows-Pfad um.
+
+## Veröffentlichen auf eigenem Webspace
 
 Vor dem Livegang `NEXT_PUBLIC_SITE_URL` in `.env.local` auf die echte Domain
 setzen. Danach `npm run build` und `npm run start`.
